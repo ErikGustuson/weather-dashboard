@@ -17,19 +17,50 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Hello, world!</title>
+    <title>Weather Dashboard</title>
   </head>
 
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Current and future weather</h1>
+
+    <!-- this will include the city input and the current days weather -->
+    <div class="row container">
+
+      <div class="col-sm-4 city-select">
+        <!-- city input -->
+        <div class="input-group mb-3 city-input">
+          <input type="text" class="form-control" placeholder="Enter City Name" aria-label="Enter City Name" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+          </div>
+        </div>
+        <!-- previous city selection -->
+        <div class="list-group previous-list">
+          <button type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
+          <button type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
+          <button type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
+          <button type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
+        </div>
+      </div>
+      <!-- display today current weather -->
+      <div class="card mb-3" style="max-width: 640px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="https://media.istockphoto.com/photos/the-changes-of-weather-a-natural-phenomenon-of-the-differences-of-picture-id1257525705?b=1&k=20&m=1257525705&s=170667a&w=0&h=8APfi2HN3sWhvfqC5CHs0dkhMDpX1reiiOOD2sBJAj4=" class="card-img" alt="4 different types of weather">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title current-date">date place holder</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-
-
-
-
-
-    
+<!-- card layout for the 5 day forcast -->
     <div class="container row five-day-cards d-flex justify-content-between">
 
       <div class="card border-dark mb-3" style="max-width: 12rem">
