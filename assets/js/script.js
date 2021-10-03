@@ -33,8 +33,11 @@ function showCity() {
 function init() {
   showCity();
 }
+
 var lat;
 var lon;
+console.log(lat);
+console.log(lon);
 
 // get lon and lat
 function getLonLat() {
@@ -53,14 +56,14 @@ function getLonLat() {
       for (let i = 0; i < response.length; i++) {
         console.log(response[i].lon);
         console.log(response[i].lat);
-        response[i].lon = lon;
-        response[i].lat = lat;
+        lon = response[i].lon;
+        lat = response[i].lat;
         saveCity();
+        getWeatherInfo()
       }
     }
   });
 }
-
 // fetch(geoApiUrl)
 //   .then(function (response) {
 //     return response.json();
@@ -70,7 +73,23 @@ function getLonLat() {
 //   });
 
 // TODO: when searching for a city it will update the current and future conditions for that city
-// when entering city it should save to local store
+// use lat and lon to get weather information to update page
+var weatherUrl =
+  "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+  lat +
+  "&lon=" +
+  lon +
+  "&exclude=minutely,hourly,alerts&units=imperial&appid=bcf0f3e083d40c7832b737bfb3c1e368";
+
+function getWeatherInfo() {
+  $.ajax({
+    url: weatherUrl,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+  });
+}
+
 // TODO: when city is searched it will add it to the search history
 // one page load it should populate previously searched citys on list with a max of 4
 // when clicking on search button it should know to pull info from input box
