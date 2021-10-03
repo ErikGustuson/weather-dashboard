@@ -8,7 +8,6 @@ var currentCity;
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
-  saveCity();
   // alert('ayyyyy you clicked me')
   currentCity = searchedCity.value;
   console.log(currentCity);
@@ -48,11 +47,16 @@ function getLonLat() {
     method: "GET",
   }).then(function (response) {
     console.log(response);
-    for (let i = 0; i < response.length; i++) {
-      console.log(response[i].lon);
-      console.log(response[i].lat);
-      response[i].lon = lon;
-      response[i].lat = lat;
+    if (response.length == 0) {
+      alert("Please enter a valid city name.");
+    } else {
+      for (let i = 0; i < response.length; i++) {
+        console.log(response[i].lon);
+        console.log(response[i].lat);
+        response[i].lon = lon;
+        response[i].lat = lat;
+        saveCity();
+      }
     }
   });
 }
