@@ -1,3 +1,5 @@
+// run function to display cits at page load
+init();
 // first i need to capture users input
 // i will need to target button and have it assing inner text as a string and assign it a var to use
 var searchedCity = document.getElementById("city-name");
@@ -6,15 +8,36 @@ var currentCity;
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
+  saveCity();
   // alert('ayyyyy you clicked me')
   currentCity = searchedCity.value;
   console.log(currentCity);
   getLonLat();
 });
 
+// save input to local storage
+function saveCity() {
+  var savedCity = {
+    city: searchedCity.value,
+  };
+  localStorage.setItem("saved-city", JSON.stringify(savedCity));
+  showCity();
+}
+
+// pull from storage
+function showCity() {
+  var lastCity = JSON.parse(localStorage.getItem("saved-city"));
+  document.getElementById("first-city").innerHTML = lastCity.city;
+}
+
+// function ran at top when page loads
+function init() {
+  showCity();
+}
 var lat;
 var lon;
 
+// get lon and lat
 function getLonLat() {
   var geoApiUrl =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
