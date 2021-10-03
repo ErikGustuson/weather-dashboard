@@ -5,10 +5,11 @@ var searchButton = document.getElementById("search-city");
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
+  // alert('ayyyyy you clicked me')
   var currentCity = searchedCity.value;
+  console.log(currentCity);
 });
 
-console.log(currentCity);
 
 // TODO: when searching for a city it will update the current and future conditions for that city
 // when entering city it should save to local store
