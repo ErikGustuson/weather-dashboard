@@ -9,21 +9,38 @@ searchButton.addEventListener("click", function (event) {
   // alert('ayyyyy you clicked me')
   currentCity = searchedCity.value;
   console.log(currentCity);
-  getNewCity();
+  getLonLat();
 });
 
+var lat;
+var lon;
 
-
-function getNewCity() {
-  var geoApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + currentCity + "&limit=1&appid=bcf0f3e083d40c7832b737bfb3c1e368"
-  fetch(geoApiUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+function getLonLat() {
+  var geoApiUrl =
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
+    currentCity +
+    "&limit=1&appid=bcf0f3e083d40c7832b737bfb3c1e368";
+  $.ajax({
+    url: geoApiUrl,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    for (let i = 0; i < response.length; i++) {
+      console.log(response[i].lon);
+      console.log(response[i].lat);
+      response[i].lon = lon;
+      response[i].lat = lat;
+    }
+  });
 }
+
+// fetch(geoApiUrl)
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
+//   });
 
 // TODO: when searching for a city it will update the current and future conditions for that city
 // when entering city it should save to local store
