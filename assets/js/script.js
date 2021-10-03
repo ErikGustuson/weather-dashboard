@@ -2,14 +2,28 @@
 // i will need to target button and have it assing inner text as a string and assign it a var to use
 var searchedCity = document.getElementById("city-name");
 var searchButton = document.getElementById("search-city");
+var currentCity;
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   // alert('ayyyyy you clicked me')
-  var currentCity = searchedCity.value;
+  currentCity = searchedCity.value;
   console.log(currentCity);
+  getNewCity();
 });
 
+
+
+function getNewCity() {
+  var geoApiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + currentCity + "&limit=1&appid=bcf0f3e083d40c7832b737bfb3c1e368"
+  fetch(geoApiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+}
 
 // TODO: when searching for a city it will update the current and future conditions for that city
 // when entering city it should save to local store
