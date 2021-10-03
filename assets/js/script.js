@@ -1,3 +1,15 @@
+// first i need to capture users input
+// i will need to target button and have it assing inner text as a string and assign it a var to use
+var searchedCity = document.getElementById("city-name");
+var searchButton = document.getElementById("search-city");
+
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  var currentCity = searchedCity.value;
+});
+
+console.log(currentCity);
+
 // TODO: when searching for a city it will update the current and future conditions for that city
 // when entering city it should save to local store
 // TODO: when city is searched it will add it to the search history
