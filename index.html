@@ -17,6 +17,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Weather Dashboard</title>
   </head>
@@ -26,99 +27,133 @@
 
     <!-- this will include the city input and the current days weather -->
     <div class="row container">
-
       <div class="col-sm-4 city-select">
         <!-- city input -->
         <div class="input-group mb-3 city-input">
-          <input id="city-name" type="text" class="form-control" placeholder="Enter City Name" aria-label="Enter City Name" aria-describedby="basic-addon2">
+          <input
+            id="city-name"
+            type="text"
+            class="form-control"
+            placeholder="Enter City Name"
+            aria-label="Enter City Name"
+            aria-describedby="basic-addon2"
+          />
           <div class="input-group-append">
-            <button id="search-city" class="btn btn-outline-secondary" type="button">Search</button>
+            <button
+              id="search-city"
+              class="btn btn-outline-secondary"
+              type="button"
+            >
+              Search
+            </button>
           </div>
         </div>
         <!-- previous city selection -->
         <div class="list-group previous-list">
-          <button id="first-city" type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
-          <button id="second-city" type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
-          <button id="third-city" type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
-          <button id="fourth-city" type="button" class="list-group-item list-group-item-action previous-individual">Look up another city</button>
+          <button
+            id="first-city"
+            type="button"
+            class="list-group-item list-group-item-action previous-individual"
+          >
+            Look up another city
+          </button>
+          <button
+            id="second-city"
+            type="button"
+            class="list-group-item list-group-item-action previous-individual"
+          >
+            Look up another city
+          </button>
+          <button
+            id="third-city"
+            type="button"
+            class="list-group-item list-group-item-action previous-individual"
+          >
+            Look up another city
+          </button>
+          <button
+            id="fourth-city"
+            type="button"
+            class="list-group-item list-group-item-action previous-individual"
+          >
+            Look up another city
+          </button>
         </div>
       </div>
       <!-- display today current weather -->
-      <div class="card mb-3" style="max-width: 640px;">
+      <div class="card mb-3" style="max-width: 640px">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="https://media.istockphoto.com/photos/the-changes-of-weather-a-natural-phenomenon-of-the-differences-of-picture-id1257525705?b=1&k=20&m=1257525705&s=170667a&w=0&h=8APfi2HN3sWhvfqC5CHs0dkhMDpX1reiiOOD2sBJAj4=" class="card-img" alt="4 different types of weather">
+            <img
+              src="https://media.istockphoto.com/photos/the-changes-of-weather-a-natural-phenomenon-of-the-differences-of-picture-id1257525705?b=1&k=20&m=1257525705&s=170667a&w=0&h=8APfi2HN3sWhvfqC5CHs0dkhMDpX1reiiOOD2sBJAj4="
+              class="card-img"
+              alt="4 different types of weather"
+            />
           </div>
+          <!-- current weather conditions should include -city name, the date, an icon of the weather, the temp, the humidity, the wind speed and the UV index -->
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title current-date">date place holder</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 id="current-city" class="card-title"></h5>
+              <p id="current-date" class="card-text"></p>
+              <img src="http://openweathermap.org/img/wn/01d@2x.png" id="current-icon" class="card-text"/>
+              <p id="current-temp" class="card-text"></p>
+              <p id="current-humidity" class="card-text"></p>
+              <p id="current-windspeed" class="card-text"></p>
+              <p id="current-uv" class="card-text"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-
-<!-- card layout for the 5 day forcast -->
+    <!-- card layout for the 5 day forcast -->
+    <!-- 5 day forecast should display date, icon of the weather, the temp and humidity -->
     <div class="container row five-day-cards d-flex justify-content-between">
-
       <div class="card border-dark mb-3" style="max-width: 12rem">
-        <div class="card-header future-date">Header</div>
+        <div id="date-one" class="card-header future-date"></div>
         <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <img id="icon-one" class="card-title" src="http://openweathermap.org/img/wn/01d@2x.png"/>
+          <p id="temp-one" class="card-text"></p>
+          <p id="humidity-one" class="card-text"></p>
         </div>
       </div>
 
       <div class="card border-dark mb-3" style="max-width: 12rem">
-        <div class="card-header future-date">Header</div>
+        <div id="date-two" class="card-header future-date"></div>
         <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <img id="icon-two" class="card-title" src="http://openweathermap.org/img/wn/01d@2x.png"/>
+          <p id="temp-two" class="card-text"></p>
+          <p id="humidity-two" class="card-text"></p>
         </div>
       </div>
 
       <div class="card border-dark mb-3" style="max-width: 12rem">
-        <div class="card-header future-date">Header</div>
+        <div id="date-three" class="card-header future-date"></div>
         <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <img id="icon-three" class="card-title" src="http://openweathermap.org/img/wn/01d@2x.png"/>
+          <p id="temp-three" class="card-text"></p>
+          <p id="humidity-three" class="card-text"></p>
         </div>
       </div>
 
       <div class="card border-dark mb-3" style="max-width: 12rem">
-        <div class="card-header future-date">Header</div>
+        <div id="date-four" class="card-header future-date"></div>
         <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <img id="icon-four" class="card-title" src="http://openweathermap.org/img/wn/01d@2x.png"/>
+          <p id="temp-four" class="card-text"></p>
+          <p id="humidity-four" class="card-text"></p>
         </div>
       </div>
 
       <div class="card border-dark mb-3" style="max-width: 12rem">
-        <div class="card-header future-date">Header</div>
+        <div id="date-five" class="card-header future-date"></div>
         <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <img id="icon-five" class="card-title" src="http://openweathermap.org/img/wn/01d@2x.png"/>
+          <p id="temp-five" class="card-text"></p>
+          <p id="humidity-five" class="card-text"></p>
         </div>
       </div>
     </div>
-    <script src="./assets/js/script.js"> </script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
