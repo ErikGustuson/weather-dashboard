@@ -1,7 +1,44 @@
 h1 {
   text-align: center;
+  background-color: lightblue;
+  padding: 30px;
+}
+
+body {
+  background-color: aquamarine;
+  width: 100%;
+}
+
+.main {
+  background-color: aquamarine;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-now {
+  padding: 20px;
 }
 
 #current-uv {
   background-color: aliceblue;
+}
+
+.city-input {
+  padding: 15px;
+}
+
+.button-group {
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  background-color: darkcyan;
+  padding: 20px;
 }

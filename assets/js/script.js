@@ -110,20 +110,19 @@ function getWeatherInfo(lat, lon) {
     $("#current-humidity").text("Humidity: " + response.current.humidity);
     $("#current-windspeed").text("Wind: " + response.current.wind_speed);
     $("#current-uv").text("UV index: " + response.current.uvi);
-      // update back ground to rep uv index condition as favorable, moderater or sever
-      // set to standard UV index 1-2 green 3-5 yellow 6-7 orandge 8-9 red 11+ purple
-      if (response.current.uvi <= 2) {
-        $("#current-uv").css("background-color", "green");
-      } else if (response.current.uvi <= 5) {
-        $("#current-uv").css("background-color", "yellow");
-      } else if (response.current.uvi <= 7) {
-        $("#current-uv").css("background-color", "orange");
-      } else if (response.current.uvi <= 10) {
-        $("#current-uv").css("background-color", "red");
-      } else (response.current.uvi > 10) { 
-        $("#current-uv").css("background-color", "purple");
-      };
-      
+    // update back ground to rep uv index condition as favorable, moderater or sever
+    // set to standard UV index 1-2 green 3-5 yellow 6-7 orandge 8-9 red 11+ purple
+    if (response.current.uvi <= 2) {
+      $("#current-uv").css("background-color", "green");
+    } else if (response.current.uvi <= 5) {
+      $("#current-uv").css("background-color", "yellow");
+    } else if (response.current.uvi <= 7) {
+      $("#current-uv").css("background-color", "orange");
+    } else if (response.current.uvi <= 10) {
+      $("#current-uv").css("background-color", "red");
+    } else if (response.current.uvi > 10) {
+      $("#current-uv").css("background-color", "purple");
+    }
 
     // weather info for the 5 day fourcast
     // first day
@@ -178,38 +177,38 @@ function getWeatherInfo(lat, lon) {
   });
 }
 
-var firstCityButton = document.getElementById("first-city")
-var secondCityButton = document.getElementById("second-city")
-var thirdCityButton = document.getElementById("third-city")
-var fourthCityButton = document.getElementById("fourth-city")
+var firstCityButton = document.getElementById("first-city");
+var secondCityButton = document.getElementById("second-city");
+var thirdCityButton = document.getElementById("third-city");
+var fourthCityButton = document.getElementById("fourth-city");
 
 firstCityButton.addEventListener("click", function (event) {
-  currentCity = allCities[0]
+  currentCity = allCities[0];
   console.log(currentCity);
   getLonLat();
 });
 
 secondCityButton.addEventListener("click", function (event) {
-  currentCity = allCities[1]
+  currentCity = allCities[1];
   console.log(currentCity);
   getLonLat();
 });
 
 thirdCityButton.addEventListener("click", function (event) {
-  currentCity = allCities[2]
+  currentCity = allCities[2];
   console.log(currentCity);
   getLonLat();
 });
 
 fourthCityButton.addEventListener("click", function (event) {
-  currentCity = allCities[3]
+  currentCity = allCities[3];
   console.log(currentCity);
   getLonLat();
 });
 // when searching for a city it will update the current and future conditions for that city
 
 // current weather conditions should include -city name, the date, an icon of the weather, the temp, the humidity, the wind speed and the UV index
-// TODO: when viewing the uv index a color should indicate the condition as favorable, moderater or sever
+// when viewing the uv index a color should indicate the condition as favorable, moderater or sever
 // 5 day forecast should display date, icon of the weather, the temp and humidity
 // when clicking on city in the search history the page should populate that citys current and future conditions
 

@@ -26,7 +26,7 @@
     <h1>Current and future weather</h1>
 
     <!-- this will include the city input and the current days weather -->
-    <div class="row container">
+    <div class="row main">
       <div class="col-sm-4 city-select">
         <!-- city input -->
         <div class="input-group mb-3 city-input">
@@ -49,7 +49,7 @@
           </div>
         </div>
         <!-- previous city selection -->
-        <div class="list-group previous-list">
+        <div class="list-group previous-list button-group">
           <button
             id="first-city"
             type="button"
@@ -81,7 +81,7 @@
         </div>
       </div>
       <!-- display today current weather -->
-      <div class="card mb-3" style="max-width: 640px">
+      <div class="card mb-8" style="max-width: 640px">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img
@@ -91,7 +91,7 @@
             />
           </div>
           <!-- current weather conditions should include -city name, the date, an icon of the weather, the temp, the humidity, the wind speed and the UV index -->
-          <div class="col-md-8">
+          <div class="col-md-8  right-now">
             <div class="card-body">
               <h5 id="current-city" class="card-title"></h5>
               <p id="current-date" class="card-text"></p>
@@ -108,7 +108,7 @@
 
     <!-- card layout for the 5 day forcast -->
     <!-- 5 day forecast should display date, icon of the weather, the temp and humidity -->
-    <div class="container row five-day-cards d-flex justify-content-between">
+    <div class="row five-day-cards d-flex justify-content-between main">
       <div class="card border-dark mb-3" style="max-width: 12rem">
         <div id="date-one" class="card-header future-date"></div>
         <div class="card-body text-dark">
@@ -155,5 +155,8 @@
       </div>
     </div>
     <script src="./assets/js/script.js"></script>
+    <footer>
+      Created by Erik Gustuson © 2021
+    </footer>
   </body>
 </html>
