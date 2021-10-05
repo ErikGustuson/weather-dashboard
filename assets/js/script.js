@@ -12,6 +12,7 @@ searchButton.addEventListener("click", function (event) {
   currentCity = searchedCity.value;
   console.log(currentCity);
   getLonLat();
+  saveCity();
 });
 
 // save input to local storage
@@ -63,7 +64,6 @@ function getLonLat() {
       console.log(response[0].lat);
       lon = response[0].lon;
       lat = response[0].lat;
-      saveCity();
       getWeatherInfo(lat, lon);
     }
   });
@@ -110,6 +110,20 @@ function getWeatherInfo(lat, lon) {
     $("#current-humidity").text("Humidity: " + response.current.humidity);
     $("#current-windspeed").text("Wind: " + response.current.wind_speed);
     $("#current-uv").text("UV index: " + response.current.uvi);
+      // update back ground to rep uv index condition as favorable, moderater or sever
+      // set to standard UV index 1-2 green 3-5 yellow 6-7 orandge 8-9 red 11+ purple
+      if (response.current.uvi <= 2) {
+        $("#current-uv").css("background-color", "green");
+      } else if (response.current.uvi <= 5) {
+        $("#current-uv").css("background-color", "yellow");
+      } else if (response.current.uvi <= 7) {
+        $("#current-uv").css("background-color", "orange");
+      } else if (response.current.uvi <= 10) {
+        $("#current-uv").css("background-color", "red");
+      } else (response.current.uvi > 10) { 
+        $("#current-uv").css("background-color", "purple");
+      };
+      
 
     // weather info for the 5 day fourcast
     // first day
@@ -133,7 +147,7 @@ function getWeatherInfo(lat, lon) {
     $("#humidity-two").text("Humidity: " + response.daily[2].humidity);
 
     //third day
-    $("#date-three").text(moment.unix(response.daily[2].dt).format("dddd"));
+    $("#date-three").text(moment.unix(response.daily[3].dt).format("dddd"));
     var iconThree =
       "http://openweathermap.org/img/wn/" +
       response.daily[3].weather[0].icon +
@@ -143,24 +157,24 @@ function getWeatherInfo(lat, lon) {
     $("#humidity-three").text("Humidity: " + response.daily[3].humidity);
 
     // fourth day
-    $("#date-four").text(moment.unix(response.daily[2].dt).format("dddd"));
+    $("#date-four").text(moment.unix(response.daily[4].dt).format("dddd"));
     var iconFour =
       "http://openweathermap.org/img/wn/" +
-      response.daily[3].weather[0].icon +
+      response.daily[4].weather[0].icon +
       "@2x.png";
     $("#icon-four").attr("src", iconFour);
-    $("#temp-four").text("Temp: " + response.daily[3].temp.day);
-    $("#humidity-four").text("Humidity: " + response.daily[3].humidity);
+    $("#temp-four").text("Temp: " + response.daily[4].temp.day);
+    $("#humidity-four").text("Humidity: " + response.daily[4].humidity);
 
     // fifth day
-    $("#date-five").text(moment.unix(response.daily[2].dt).format("dddd"));
+    $("#date-five").text(moment.unix(response.daily[5].dt).format("dddd"));
     var iconFive =
       "http://openweathermap.org/img/wn/" +
-      response.daily[3].weather[0].icon +
+      response.daily[5].weather[0].icon +
       "@2x.png";
     $("#icon-five").attr("src", iconFive);
-    $("#temp-five").text("Temp: " + response.daily[3].temp.day);
-    $("#humidity-five").text("Humidity: " + response.daily[3].humidity);
+    $("#temp-five").text("Temp: " + response.daily[5].temp.day);
+    $("#humidity-five").text("Humidity: " + response.daily[5].humidity);
   });
 }
 
@@ -169,20 +183,35 @@ var secondCityButton = document.getElementById("second-city")
 var thirdCityButton = document.getElementById("third-city")
 var fourthCityButton = document.getElementById("fourth-city")
 
-searchButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  // alert('ayyyyy you clicked me')
-  currentCity = searchedCity.value;
+firstCityButton.addEventListener("click", function (event) {
+  currentCity = allCities[0]
   console.log(currentCity);
   getLonLat();
 });
 
+secondCityButton.addEventListener("click", function (event) {
+  currentCity = allCities[1]
+  console.log(currentCity);
+  getLonLat();
+});
+
+thirdCityButton.addEventListener("click", function (event) {
+  currentCity = allCities[2]
+  console.log(currentCity);
+  getLonLat();
+});
+
+fourthCityButton.addEventListener("click", function (event) {
+  currentCity = allCities[3]
+  console.log(currentCity);
+  getLonLat();
+});
 // when searching for a city it will update the current and future conditions for that city
 
 // current weather conditions should include -city name, the date, an icon of the weather, the temp, the humidity, the wind speed and the UV index
 // TODO: when viewing the uv index a color should indicate the condition as favorable, moderater or sever
 // 5 day forecast should display date, icon of the weather, the temp and humidity
-// TODO: when clicking on city in the search history the page should populate that citys current and future conditions
+// when clicking on city in the search history the page should populate that citys current and future conditions
 
 // one page load it should populate previously searched citys on list with a max of 4
 // run function to display cits at page load

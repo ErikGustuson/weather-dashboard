@@ -1,3 +1,7 @@
 h1 {
   text-align: center;
 }
+
+#current-uv {
+  background-color: aliceblue;
+}
